@@ -1,0 +1,114 @@
+[
+{
+    "model": "animals.animal",
+    "pk": 1,
+    "fields": {
+        "name": "Мила",
+        "age": 5,
+        "arrival_date": "2023-02-03T09:30:18.124Z",
+        "weight": 10,
+        "height": 40,
+        "additional_information": "Очень активная собака породы \"Джек Рассел Терьер\". Любит играть, гулять и покушать :)",
+        "is_deleted": false,
+        "user": 1
+    }
+},
+{
+    "model": "animals.animal",
+    "pk": 2,
+    "fields": {
+        "name": "Марсик",
+        "age": 2,
+        "arrival_date": "2023-02-03T09:37:19.131Z",
+        "weight": 5,
+        "height": 25,
+        "additional_information": "Миленький котик породы \"Бенгальский\". Очень игривый и супер активный! Любит спать на коленках",
+        "is_deleted": false,
+        "user": 1
+    }
+},
+{
+    "model": "animals.animal",
+    "pk": 3,
+    "fields": {
+        "name": "Луффи",
+        "age": 5,
+        "arrival_date": "2023-02-03T09:38:29.402Z",
+        "weight": 30,
+        "height": 50,
+        "additional_information": "Самый пушистый пёс на планете! Белый как снег и очень серьёзный, будет оберегать своих любимых хозяев.",
+        "is_deleted": false,
+        "user": 1
+    }
+},
+{
+    "model": "animals.animal",
+    "pk": 4,
+    "fields": {
+        "name": "Макс",
+        "age": 8,
+        "arrival_date": "2023-02-03T10:21:41.526Z",
+        "weight": 35,
+        "height": 70,
+        "additional_information": "Отличный сторожевой пёс породы \"Немецкая овчарка\". Будет вам самым верным другом, никогда не оставит в беде!",
+        "is_deleted": false,
+        "user": 1
+    }
+},
+{
+    "model": "animals.animal",
+    "pk": 5,
+    "fields": {
+        "name": "Пончик",
+        "age": 1,
+        "arrival_date": "2023-02-03T10:44:46.186Z",
+        "weight": 1,
+        "height": 15,
+        "additional_information": "Очень милый хомячок :) Любит бегать в колесе",
+        "is_deleted": false,
+        "user": 1
+    }
+},
+{
+    "model": "animals.animal",
+    "pk": 6,
+    "fields": {
+        "name": "Мяукалка",
+        "age": 1,
+        "arrival_date": "2023-02-03T11:29:33.820Z",
+        "weight": 5,
+        "height": 25,
+        "additional_information": "Котёнок, британский, глазки голубые!",
+        "is_deleted": false,
+        "user": 2
+    }
+},
+{
+    "model": "animals.animal",
+    "pk": 7,
+    "fields": {
+        "name": "Муся",
+        "age": 2,
+        "arrival_date": "2023-02-03T11:36:40.176Z",
+        "weight": 25,
+        "height": 40,
+        "additional_information": "Толстый кот",
+        "is_deleted": false,
+        "user": 1
+    }
+},
+{
+    "model": "animals.animal",
+    "pk": 9,
+    "fields": {
+        "name": "Крок",
+        "age": 5,
+        "arrival_date": "2023-02-03T11:39:05.914Z",
+        "weight": 1,
+        "height": 10,
+        "additional_information": "Морская черепашка с красными пятнышками на голове!",
+        "is_deleted": false,
+        "user": 2
+    }
+}
+]
