@@ -9,6 +9,7 @@ class Animal(models.Model):
     height = models.PositiveIntegerField(verbose_name='рост')
     additional_information = models.TextField(max_length=1000,
                                               null=True, blank=True, verbose_name='дополнительная информация')
+    is_deleted = models.BooleanField(default=False, verbose_name='запись удалена')
 
     class Meta:
         verbose_name = 'животное'

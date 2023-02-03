@@ -6,6 +6,6 @@ from .models import (
 
 @admin.register(Animal)
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'arrival_date']
-    list_filter = ['arrival_date']
+    list_display = ['id', 'name', 'arrival_date', 'is_deleted']
+    list_filter = ['arrival_date', 'is_deleted']
     search_fields = ['name', 'additional_information']

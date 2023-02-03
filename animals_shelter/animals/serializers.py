@@ -5,4 +5,4 @@ from .models import Animal
 class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Animal
-        fields = '__all__'
+        fields = ['name', 'age', 'arrival_date', 'weight', 'height', 'additional_information']
