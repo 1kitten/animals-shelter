@@ -1,9 +1,20 @@
 from rest_framework import generics, status
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Animal
 from .permissions import IsAdminOrAuthenticatedOrReadOnly, IsAdminOrReadOnly
 from .serializers import AnimalSerializer
+
+
+class AnimalAPIListPagination(PageNumberPagination):
+    """
+    Pagination Class For Animal List API View.
+    Returns only <= 4 rows from DataBase.
+    """
+    page_size = 4
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 
 class AnimalsAPIList(generics.ListCreateAPIView):
@@ -17,6 +28,7 @@ class AnimalsAPIList(generics.ListCreateAPIView):
     """
     serializer_class = AnimalSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = AnimalAPIListPagination
 
     def get_queryset(self):
         if self.request.user.is_authenticated and not self.request.user.is_staff:
