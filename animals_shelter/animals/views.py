@@ -11,14 +11,22 @@ class AnimalsAPIList(generics.ListCreateAPIView):
     API List View.
     Returns all the values in Animals table from DataBase.
     Returned format is Json.
-    User Allowed to create new Animal on page.
+    Admin Allowed to create new Animal on page.
     """
     serializer_class = AnimalSerializer
-    queryset = Animal.objects.all()
     permission_classes = [IsAdminOrReadOnly]
+
+    def get_queryset(self):
+        return Animal.objects.filter(is_deleted=False).all()
 
 
 class AnimalsDetailAPI(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+    """
+    API Detail View.
+    Returns all the data of requested animal by his Primary Key.
+    Returned format is Json.
+    Admin Allowed to SOFT delete animal or update his information.
+    """
     serializer_class = AnimalSerializer
     queryset = Animal.objects.all()
     permission_classes = [IsAdminOrReadOnly]
