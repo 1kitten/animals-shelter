@@ -2,7 +2,7 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Animal
-from .permissions import IsAdminOrAuthenticatedOrReadOnly
+from .permissions import IsAdminOrAuthenticatedOrReadOnly, IsAdminOrReadOnly
 from .serializers import AnimalSerializer
 
 
@@ -33,10 +33,35 @@ class AnimalsDetailAPI(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     """
     serializer_class = AnimalSerializer
     queryset = Animal.objects.all()
-    permission_classes = [IsAdminOrAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def destroy(self, request, *args, **kwargs):
+        if request.user.is_staff:
+            instance = self.get_object()
+            instance.is_deleted = True
+            instance.save()
+            return Response(status=status.HTTP_200_OK)
+        return Response({"You are not an administrator."}, 400)
+
+    def put(self, request, *args, **kwargs):
+        if request.user.is_staff:
+            return self.update(request, *args, **kwargs)
+        if request.user.pk == self.get_object().user.pk:
+            return self.update(request, *args, **kwargs)
+        return Response({"You are not a shelter for this animal."}, 400)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
         instance = self.get_object()
-        instance.is_deleted = True
-        instance.save()
-        return Response(status=status.HTTP_200_OK)
+        shelter = instance.user
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        serializer.validated_data['user'] = shelter
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
