@@ -3,6 +3,9 @@ from .models import Animal
 
 
 class AnimalSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Animal model.
+    """
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
